@@ -1,0 +1,30 @@
+
+<div class="container">
+  <form [formGroup] = "myForm" (ngSubmit)="sendMessage()">
+    Value {{ myForm.value | json}}
+    <br>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="abc@example.com" formControlName="email">
+      <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">{{ getEmailErrorMessage() }}</mat-error>
+    </mat-form-field>
+    
+    <br>
+    <mat-form-field>
+      <mat-label>Message</mat-label>
+      <input matInput placeholder="Message" formControlName="message">
+    </mat-form-field>
+  
+    <br>
+    <button *ngIf="!loading" type="submit" mat-raised-button color="primary" [disabled]="myForm.invalid">Send Message</button>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+  </form>
+</div>
+
+<div>
+  <ul>
+    <li *ngFor="let message of messages$ | async">
+      {{ message.message }}
+    </li>
+  </ul>
+</div>

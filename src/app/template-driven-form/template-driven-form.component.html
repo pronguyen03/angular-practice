@@ -1,0 +1,28 @@
+
+<div class="container">
+  <form #messageForm = "ngForm" (ngSubmit)="sendMessage(messageForm.value)">
+    Value {{ messageForm.value | json }}
+    <br>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput name="email" placeholder="abc@example.com" [(ngModel)] = 'dataValue.email' required pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$">
+      <mat-error *ngIf="messageForm.controls.email?.errors?.required 
+      && (messageForm.controls.email?.dirty 
+        || messageForm.controls.email?.touched)">
+        Email is required</mat-error>
+      <mat-error *ngIf="messageForm.controls.email?.errors?.pattern 
+      && (messageForm.controls.email?.dirty 
+        || messageForm.controls.email?.touched)">Email is invalid</mat-error>
+    </mat-form-field>
+    
+    <br>
+    <mat-form-field>
+      <mat-label>Message</mat-label>
+      <input matInput name="message" placeholder="Message" [(ngModel)] = 'dataValue.message'>
+    </mat-form-field>
+  
+    <br>
+    <button *ngIf="!loading" type="submit" mat-raised-button color="primary" [disabled]="messageForm.invalid">Send Message</button>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+  </form>
+</div>

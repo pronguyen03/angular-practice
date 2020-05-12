@@ -1,0 +1,42 @@
+<form [formGroup]="nestedForm"> 
+  Value {{ nestedForm.value | json}}
+  <hr>
+  <mat-form-field>
+    <mat-label>Customer Name</mat-label>
+    <input matInput placeholder="Name" formControlName="customerName">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="abc@example.com" formControlName="email">
+    <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">{{ getEmailErrorMessage() }}</mat-error>
+  </mat-form-field>
+  
+  <br>
+  <h4>Shipping Address 1</h4>
+
+  <div formGroupName="address1">
+    <mat-form-field>
+      <mat-label>Receiver Name</mat-label>
+      <input matInput placeholder="Receiver Name" formControlName="receiverName">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Address</mat-label>
+      <input matInput placeholder="Address" formControlName="address">
+    </mat-form-field>
+  </div>
+
+  <h4>Shipping Address 2</h4>
+
+  <div formGroupName="address2">
+    <mat-form-field>
+      <mat-label>Receiver Name</mat-label>
+      <input matInput placeholder="Receiver Name" formControlName="receiverName">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Address</mat-label>
+      <input matInput placeholder="Address" formControlName="address">
+    </mat-form-field>
+  </div>
+
+</form>

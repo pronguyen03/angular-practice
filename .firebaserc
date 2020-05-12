@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-practice-c5048": {
+      "hosting": {
+        "forms-practice": [
+          "angular-practice-c5048"
+        ]
+      }
+    }
+  }
+}
